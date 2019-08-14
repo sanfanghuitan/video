@@ -16,8 +16,8 @@
 	content="智游教育在线课程视频,为您提供java,python,HTML5,UI,PHP,大数据等学科经典视频教程在线浏览学习,精细化知识点解析,深入浅出,想学不会都难,智游教育,学习成就梦想！">
 <script src="jQuery/jquery-3.4.1.min.js"></script>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<link rel="stylesheet" href="../static/z/base.css">
-<link rel="stylesheet" href="../static/z/css.css">
+<link rel="stylesheet" href="./static/z/base.css">
+<link rel="stylesheet" href="./static/z/css.css">
 <link rel="icon" href="http://localhost:8080/static/z/favicon.png"
 	type="image/png">
 <style type="text/css">
@@ -41,7 +41,7 @@
 				<i id="user"></i> <a href="userShow.do?email=${user.accounts}"><img id="avatar" src="${user.imgurl}"
 					alt="" width="30px;"><i>${user.accounts}</i></a>
 					<a target="_blank" href="userExit.do"><img
-					src="./static/z/we.png" draggable="false">退出</a>
+					src="../static/z/we.png" draggable="false">退出</a>
 			</div>
       </c:if>
 			
@@ -49,16 +49,16 @@
 			<div id="userBlock" class="userBlock none" style="float: right">
 				<a target="_blank" id="login_open"><img src="./static/z/we.png"
 					draggable="false">登录</a> <a target="_blank" id="reg_open"><img
-					src="./static/z/we.png" draggable="false">注册</a>
+					src="../static/z/we.png" draggable="false">注册</a>
 
 			</div>
 
         </c:if>
 			<a onclick="JavaScript:addFavorite2()"><img
-				src="./static/z/sc.png" draggable="false">加入收藏</a> <a
-				id="adminreg_open"><img src="./static/z/we.png"
+				src="../static/z/sc.png" draggable="false">加入收藏</a> <a
+				id="adminreg_open"><img src="../static/z/we.png"
 				draggable="false">后台管理</a> <a class="color_e4"><img
-				src="./static/z/phone.png" draggable="false"> 0371-88888598
+				src="../static/z/phone.png" draggable="false"> 0371-88888598
 				4006-371-555</a>
 
 		</div>
@@ -66,7 +66,7 @@
 
 	<!--banner图-->
 	<div class="banner index-banner">
-		<img alt="" src="./static/z/banner-2.jpg">
+		<img alt="" src="../static/z/banner-2.jpg">
 	</div>
 
 	<!--模块化课程-->
@@ -78,14 +78,14 @@
 					<tbody>
 						<tr>
 							<td colspan="2"><a href="courseShow"> 
-							<img src="./static/z/html5.jpg" alt="" class="image scale"
+							<img src="../static/z/html5.jpg" alt="" class="image scale"
 									draggable="false">
 									<div class="headline">
-										<span>Web前端教程</span> <img src="./static/z/arrow.png" alt="">
+										<span>Web前端教程</span> <img src="../static/z/arrow.png" alt="">
 									</div>
 							</a></td>
 							<td>
-								<!--上线时修改id--> <a href="courseShow"> <img src="./static/z/ui.jpg" alt=""
+								<!--上线时修改id--> <a href="courseShow"> <img src="../static/z/ui.jpg" alt=""
 									class="image scale" draggable="false">
 									<div class="headline">
 										<span>UI设计教程</span> <img src="./static/z/arrow.png" alt="">

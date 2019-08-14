@@ -15,7 +15,7 @@ import org.springframework.context.annotation.ComponentScan;
  * */
 //@ComponentScan("com.zhiyou")  //自定义需要扫描的路径
 @SpringBootApplication
-@MapperScan("com.zhiyou.mapper")
+@MapperScan("com.zhiyou.dao")
 public class Application {
 
 	public static void main(String[] args) {
