@@ -3,7 +3,7 @@
 <mapper namespace="com.zhiyou.dao.VideoDao">
 
 
- <resultMap type="Video" id="VideoMap">
+ <resultMap type="com.zhiyou.model.Video" id="VideoMap">
          <id column="video_id" property="video_id"/>
          <result column="title" property="title"/>
          <result column="detail" property="detail"/>
@@ -15,11 +15,11 @@
           <association column="course_id" property="course" select="com.zhiyou.dao.CourseDao.selectById"></association>  
      </resultMap>
  
-     <select id="selectAll" resultMap="VideoMap" parameterType="Video">
+     <select id="selectAll" resultMap="VideoMap" parameterType="com.zhiyou.model.Video">
         select * from video  
      </select>
      
-     <insert id="add" parameterType="Video" keyColumn="video_id" keyProperty="video_id" useGeneratedKeys="true">
+     <insert id="add" parameterType="com.zhiyou.model.Video" keyColumn="video_id" keyProperty="video_id" useGeneratedKeys="true">
        insert into video(title,detail,time,speaker_id,course_id,video_url,image_url,play_num) 
        values(#{title},#{detail},#{time},#{speaker_id},#{course_id},#{video_url},#{image_url},#{play_num})    
      </insert>
@@ -32,7 +32,7 @@
      select * from video where video_id=#{video_id}
      </select>
      
-      <insert id="update" parameterType="Video">  
+      <insert id="update" parameterType="com.zhiyou.model.Video">  
         update video
        <set>
         <if test="title!=null">
@@ -81,7 +81,7 @@
      </delete>
     
     
-     <select id="selectLike" resultMap="VideoMap" parameterType="Video">
+     <select id="selectLike" resultMap="VideoMap" parameterType="com.zhiyou.model.Video">
      <include refid="a"/>
      </select>     
      <sql id="a">
@@ -104,7 +104,7 @@
      </sql>
      
      
-      <select id="selectLikeCount" resultType="int" parameterType="Video">
+      <select id="selectLikeCount" resultType="int" parameterType="com.zhiyou.model.Video">
      <include refid="b"/>
      </select>     
      <sql id="b">

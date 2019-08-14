@@ -249,7 +249,7 @@
 			<div class="mask_content_body">
 				<form name="AdminloginForm" action="AdminLogin.login" method="post">
 					<h3>快速登录</h3>
-					<input id="AdminAcount" placeholder="请输入管理员账户" name="adminAccounts"
+					<input id="AdminAcount" placeholder="请输入管理员账户" name="adminAccount"
 						type="text"
 						style="width: 100%; margin: 15px 0; padding: 0 10px 0 50px; border: 1px solid #bac0ce">
 						<span id="AdminAccountMsg"></span> 

@@ -11,6 +11,4 @@ public class IndexController {
 		System.out.println("½øÀ´ÁË");
 		return "index";
 	}*/
-	
-
 }

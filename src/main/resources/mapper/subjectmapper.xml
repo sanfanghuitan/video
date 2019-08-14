@@ -3,19 +3,14 @@
 <mapper namespace="com.zhiyou.dao.SubjectDao">
 
 
- <resultMap type="Subject" id="SubjectMap">
+ <resultMap type="com.zhiyou.model.Subject" id="SubjectMap">
          <id column="subject_id" property="subject_id"/>
          <result column="subject_name" property="subject_name"/>
      </resultMap>
  
-     <select id="selectAll" resultMap="SubjectMap" parameterType="Subject">
+     <select id="selectAll" resultMap="SubjectMap" parameterType="com.zhiyou.model.Subject">
         select * from subject  
      </select>
-     
-     <insert id="add" parameterType="Course" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
-       insert into subject(course_title,course_desc,subject_id) 
-       values(#{course_title},#{course_desc},#{subject_id})    
-     </insert>
      
      <insert id="delete">
         delete from course where id=#{id}
@@ -25,7 +20,7 @@
      select * from subject where subject_id=#{subject_id}
      </select>
      
-      <insert id="update" parameterType="Subject">  
+      <insert id="update" parameterType="com.zhiyou.model.Subject">  
         update subject
        <set>
         <if test="phone!=null">

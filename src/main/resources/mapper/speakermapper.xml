@@ -3,7 +3,7 @@
 <mapper namespace="com.zhiyou.dao.SpeakerDao">
 
 
- <resultMap type="Speaker" id="SpeakerMap">
+ <resultMap type="com.zhiyou.model.Speaker" id="SpeakerMap">
          <id column="id" property="id"/>
          <result column="speaker_name" property="speaker_name"/>
          <result column="speaker_desc" property="speaker_desc"/>
@@ -11,11 +11,11 @@
          <result column="pic_url" property="pic_url"/>     
      </resultMap>
  
-     <select id="selectAll" resultMap="SpeakerMap" parameterType="Speaker">
+     <select id="selectAll" resultMap="SpeakerMap" parameterType="com.zhiyou.model.Speaker">
         select * from speaker  
      </select>
      
-     <insert id="add" parameterType="Speaker" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+     <insert id="add" parameterType="com.zhiyou.model.Speaker" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
        insert into speaker(speaker_name,speaker_desc,speaker_job,pic_url) 
        values(#{speaker_name},#{speaker_desc},#{speaker_job},#{pic_url})    
      </insert>
@@ -28,7 +28,7 @@
      select * from speaker where id=#{id}
      </select>
      
-      <insert id="update" parameterType="Speaker">  
+      <insert id="update" parameterType="com.zhiyou.model.Speaker">  
         update speaker
        <set>
         <if test="speaker_name!=null">

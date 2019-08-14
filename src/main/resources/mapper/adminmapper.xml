@@ -2,19 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zhiyou.dao.AdminDao">
 
-
- <resultMap type="Admin" id="adminMap">
+ <resultMap type="com.zhiyou.model.Admin" id="adminMap">
          <id column="id" property="id"/>
          <result column="accounts" property="accounts"/>
          <result column="password" property="password"/>
          <result column="admin_remark" property="admin_remark"/>
      </resultMap>
  
-     <select id="selectAll" resultMap="adminMap" parameterType="Admin">
+     <select id="selectAll" resultMap="adminMap" parameterType="com.zhiyou.model.Admin">
         select * from admin  
      </select>
      
-     <insert id="add" parameterType="Admin" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+     <insert id="add" parameterType="com.zhiyou.model.Admin" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
        insert into user(accounts,phone,password,nickname,sex,birthday,address,imgurl,createtime) 
        values(#{accounts},#{phone},#{password},#{nickname},#{sex},#{birthday},#{address},#{imgurl},#{createtime})    
      </insert>
@@ -27,7 +26,7 @@
      select * from admin where accounts=#{accounts}
      </select>
      
-      <insert id="update" parameterType="Admin">  
+      <insert id="update" parameterType="com.zhiyou.model.Admin">  
         update admin
        <set>
         <if test="phone!=null">

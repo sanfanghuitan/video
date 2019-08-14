@@ -3,12 +3,12 @@
 <mapper namespace="com.zhiyou.dao.CourseDao">
 
 
- <resultMap type="Course" id="CourseMap">
+ <resultMap type="com.zhiyou.model.Course" id="CourseMap">
          <id column="id" property="id"/>
          <result column="course_title" property="course_title"/>
          <result column="course_desc" property="course_desc"/>
          <association column="subject_id"  property="subject" select="com.zhiyou.dao.SubjectDao.selectById"/>
-         <collection property="video" ofType="Video" javaType="java.util.ArrayList">
+         <collection property="video" ofType="com.zhiyou.model.Video" javaType="java.util.ArrayList">
          <id column="video_id" property="video_id"/>
          <result column="title" property="title"/>
          <result column="detail" property="detail"/>
@@ -21,11 +21,11 @@
        </collection>
      </resultMap>
  
-     <select id="selectAll" resultMap="CourseMap" parameterType="Course">
+     <select id="selectAll" resultMap="CourseMap" parameterType="com.zhiyou.model.Course">
         select * from course c left join video v on c.id=v.course_id
      </select>
      
-     <insert id="add" parameterType="Course" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+     <insert id="add" parameterType="com.zhiyou.model.Course" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
        insert into course(course_title,course_desc,subject_id) 
        values(#{course_title},#{course_desc},#{subject_id})    
      </insert>
@@ -46,7 +46,7 @@
      
      
      
-      <insert id="update" parameterType="Course">  
+      <insert id="update" parameterType="com.zhiyou.model.Course">  
         update course
        <set>
         <if test="course_title!=null">
