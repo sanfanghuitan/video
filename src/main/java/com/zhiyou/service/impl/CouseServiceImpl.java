@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.zhiyou.dao.CourseDao;
 import com.zhiyou.model.Course;
 import com.zhiyou.service.CourseService;
+import com.zhiyou.utils.VideoResult;
 
 @Service
 public class CouseServiceImpl implements CourseService{
@@ -53,6 +54,30 @@ public class CouseServiceImpl implements CourseService{
 	public Course selectOne(int id) {
 		// TODO Auto-generated method stub
 		return courseDao.selectOne(id);
+	}
+
+	/**
+	 * 根据subjectId查询
+	 */
+	@Override
+	public VideoResult selectCourse(int subjectId) {
+		List<Course> list = courseDao.selectCourse(subjectId);
+		if (list.isEmpty()) {
+			return VideoResult.build(400, "错误操作", list);
+		} 
+		return VideoResult.success(list);
+	}
+
+	@Override
+	public VideoResult selectVideo(int videoId) {
+		List<Course> list = courseDao.selectVideo(videoId);
+		return VideoResult.success(list);
+	}
+
+	@Override
+	public VideoResult selectSpeaker(int speakerId) {
+		List<Course> list = courseDao.selectSpeaker(speakerId);
+		return VideoResult.success(list);
 	}
 
 }

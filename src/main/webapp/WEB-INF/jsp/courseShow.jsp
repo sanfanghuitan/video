@@ -16,14 +16,14 @@
 	content="智游教育在线课程视频,为您提供java,python,HTML5,UI,PHP,大数据等学科经典视频教程在线浏览学习,精细化知识点解析,深入浅出,想学不会都难,智游教育,学习成就梦想！">
 <script src="../jQuery/jquery-3.4.1.min.js"></script>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<link rel="stylesheet" href="./static/z/base.css">
-<link rel="stylesheet" href="./static/z/css.css">
+<link rel="stylesheet" href="/static/z/base.css">
+<link rel="stylesheet" href="/static/z/css.css">
 <link rel="icon" href="http://localhost:8080/video/favicon.png"
 	type="image/png">
 <title>在线公开课-智游教育|java|大数据|HTML5|python|UI|PHP视频教程</title>
 <style type="text/css">
 #AdminAcount {
-	background-image: url("./static/z/user.png");
+	background-image: url("/static/z/user.png");
 	background-repeat: no-repeat;
 	background-position: 8px center;
 }
@@ -41,24 +41,24 @@
 				<i id="user"></i> <a href="userShow.do"><img id="avatar"
 					src="${user.imgurl}" alt="" width="30px;"><i>${user.accounts}</i></a>
 				<a target="_blank" href="userExit.do"><img
-					src="./static/z/we.png" draggable="false">退出</a>
+					src="/static/z/we.png" draggable="false">退出</a>
 			</div>
 		</c:if>
 
 		<c:if test="${user == null }">
 			<div id="userBlock" class="userBlock none" style="float: right">
-				<a target="_blank" id="login_open"><img src="./static/z/we.png"
+				<a target="_blank" id="login_open"><img src="/static/z/we.png"
 					draggable="false">登录</a> <a target="_blank" id="reg_open"><img
-					src="./static/z/we.png" draggable="false">注册</a>
+					src="/static/z/we.png" draggable="false">注册</a>
 			</div>
 		</c:if>
 
 
 		<a onclick="JavaScript:addFavorite2()"><img
-			src="./static/z/sc.png" draggable="false">加入收藏</a> <a
-			id="adminreg_open" target="_blank"><img src="./static/z/we.png"
+			src="/static/z/sc.png" draggable="false">加入收藏</a> <a
+			id="adminreg_open" target="_blank"><img src="/static/z/we.png"
 			draggable="false">后台管理</a> <a class="color_e4"><img
-			src="./static/z/phone.png" draggable="false"> 0371-88888598
+			src="/static/z/phone.png" draggable="false"> 0371-88888598
 			4006-371-555</a>
 
 	</div>
@@ -68,13 +68,16 @@
 	<div id="app">
 		<!--banner图-->
 		<div class="banner">
-			<img alt="" src="./static/z/banner-1.jpg" width="100%"
+			<img alt="" src="/static/z/banner-1.jpg" width="100%"
 				height="470px;">
 		</div>
 
-		<c:forEach items="${course }" var="i">
+		<c:forEach items="${course.data }" var="i" varStatus="status">
 			<!--面包屑导航-->
-			<div class="container mian-nav" id="navDiv">公开课/${i.subject.subject_name}</div>
+			<c:if test="${status.first }">
+				<div class="container mian-nav" id="navDiv">公开课/${i.subject.subject_name}</div>
+			</c:if>
+			
 			<div class="classify">
 				<div class="container" id="dataContainer">
 					<div class="section">
@@ -91,12 +94,12 @@
 								<li class="section-main" onclick="getVideo('${video.video_id}')">
 									<div class="thum"
 										style="background-image: url(${video.image_url})"></div>
-									<p>${video.title}</p>
+									<p><a href="playVideo?video_id=${video.video_id }&speaker_id=${video.speaker_id}&play_num=${video.play_num}">${video.title}</a></p>
 									<div class="classify-v-info">
 										<span class="count" title="观看次数"><img
-											src="./static/z/count.png" alt="">${video.play_num }</span> <span
+											src="/static/z/count.png" alt="">${video.play_num }</span> <span
 											class="duration" title="视频时长"><img
-											src="./static/z/player.png" alt="">${video.time}</span>
+											src="/static/z/player.png" alt="">${video.time}</span>
 									</div>
 								</li>
 							</c:forEach>
@@ -109,7 +112,7 @@
 		<!--页脚-->
 		<footer>
 		<ul>
-			<li><img src="./static/z/footer_logo.png" alt=""
+			<li><img src="/static/z/footer_logo.png" alt=""
 				draggable="false"></li>
 			<li class="mt25">
 				<h3>各校区地址</h3>
@@ -136,7 +139,7 @@
 						<div>
 							<img class="weixin" src="./static/z/a_002.png" alt=""
 								draggable="false"> <img class="weibo"
-								src="./static/z/a.png" alt="" draggable="false">
+								src="/static/z/a.png" alt="" draggable="false">
 						</div></li>
 				</ul>
 			</li>
@@ -149,7 +152,7 @@
 		<div class="mask hidden" id="login">
 			<div class="mask_content">
 				<div class="mask_content_header">
-					<img src="./static/z/logo.png" alt="" class="ma">
+					<img src="/static/z/logo.png" alt="" class="ma">
 				</div>
 				<div class="mask_content_body">
 					<form name="loginForm" method="post" action="userLogin.login">
@@ -177,7 +180,7 @@
 		<div class="mask hidden" id="adminLogin">
 			<div class="mask_content">
 				<div class="mask_content_header">
-					<img src="./static/z/logo.png" alt="" class="ma">
+					<img src="/static/z/logo.png" alt="" class="ma">
 				</div>
 				<div class="mask_content_body">
 					<form name="AdminloginForm" action="AdminLogin.login" method="post">
@@ -204,7 +207,7 @@
 		<div class="mask hidden" id="reg">
 			<div class="mask_content">
 				<div class="mask_content_header">
-					<img src="./static/z/logo.png" alt="" class="ma">
+					<img src="/static/z/logo.png" alt="" class="ma">
 				</div>
 				<div class="mask_content_body">
 					<form id="regForm"
@@ -237,16 +240,17 @@
 		<form action="http://localhost:8080/Voids/">
 			<input type="text" value="1" id="isLogin">
 		</form>
-		<script src="./static/z/jquery-1.js"></script>
-		<script src="./static/z/gVerify.js"></script>
-		<script src="./static/z/index.js"></script>
+		<script src="/static/z/jquery-1.js"></script>
+		<script src="/static/z/gVerify.js"></script>
+		<script src="/static/z/index.js"></script>
 
 	</div>
 
+	
 	<script type="text/javascript">
-		function getVideo(num) {
+		/* function getVideo(num) {
 			location.href = "playVideo?video_id=" + num;
-		}
+		} */
 		window.onload = function() {
 			var msg = "${msg1}";
 			if (msg != null && msg != "") {

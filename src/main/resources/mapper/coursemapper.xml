@@ -18,6 +18,13 @@
          <result column="video_url" property="video_url"/>
          <result column="image_url" property="image_url"/>
          <result column="play_num" property="play_num"/>
+         <association property="speaker" javaType="com.zhiyou.model.Speaker">
+				<id column="id" property="id"/>
+				<result column="speaker_name" property="speaker_name"/>
+				<result column="speaker_desc" property="speaker_desc"/>
+				<result column="speaker_job" property="speaker_job"/>
+				<result column="pic_url" property="pic_url"/>
+			</association>
        </collection>
      </resultMap>
  
@@ -80,5 +87,20 @@
      
      
      </delete>
+     
+     <select id="selectCourse" resultMap="CourseMap">
+		SELECT * FROM course c LEFT JOIN video v ON v.course_id = c.id 
+		LEFT JOIN subject s ON c.subject_id = s.subject_id WHERE s.subject_id = #{subjectId}
+	</select> 
+	
+	<select id="selectVideo" resultMap="CourseMap">
+		SELECT * FROM video v, course c, subject s, speaker sp WHERE v.course_id = c.id AND 
+		c.subject_id = s.subject_id and sp.id = v.speaker_id and v.video_id = #{videoId}
+	</select>
+	
+	<select id="selectSpeaker" resultMap="CourseMap">
+		SELECT * FROM video v, course c, subject s, speaker sp WHERE v.course_id = c.id AND 
+		c.subject_id = s.subject_id and sp.id = v.speaker_id and v.speaker_id = #{speakerId}
+	</select>
     
 </mapper>

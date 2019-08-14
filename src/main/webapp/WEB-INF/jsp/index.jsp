@@ -16,13 +16,13 @@
 	content="智游教育在线课程视频,为您提供java,python,HTML5,UI,PHP,大数据等学科经典视频教程在线浏览学习,精细化知识点解析,深入浅出,想学不会都难,智游教育,学习成就梦想！">
 <script src="jQuery/jquery-3.4.1.min.js"></script>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<link rel="stylesheet" href="static/z/base.css">
-<link rel="stylesheet" href="static/z/css.css">
+<link rel="stylesheet" href="/static/z/base.css">
+<link rel="stylesheet" href="/static/z/css.css">
 <link rel="icon" href="http://localhost:8080/static/z/favicon.png"
 	type="image/png">
 <style type="text/css">
 #AdminAcount {
-	background-image: url("./static/z/user.png");
+	background-image: url("/static/z/user.png");
 	background-repeat: no-repeat;
 	background-position: 8px center;
 }
@@ -41,24 +41,24 @@
 				<i id="user"></i> <a href="userShow.do?email=${user.accounts}"><img id="avatar" src="${user.imgurl}"
 					alt="" width="30px;"><i>${user.accounts}</i></a>
 					<a target="_blank" href="userExit.do"><img
-					src="../static/z/we.png" draggable="false">退出</a>
+					src="/static/z/we.png" draggable="false">退出</a>
 			</div>
       </c:if>
 			
          <c:if test="${user == null }">
 			<div id="userBlock" class="userBlock none" style="float: right">
-				<a target="_blank" id="login_open"><img src="./static/z/we.png"
+				<a target="_blank" id="login_open"><img src="/static/z/we.png"
 					draggable="false">登录</a> <a target="_blank" id="reg_open"><img
-					src="../static/z/we.png" draggable="false">注册</a>
+					src="/static/z/we.png" draggable="false">注册</a>
 
 			</div>
 
         </c:if>
 			<a onclick="JavaScript:addFavorite2()"><img
-				src="../static/z/sc.png" draggable="false">加入收藏</a> <a
+				src="/static/z/sc.png" draggable="false">加入收藏</a> <a
 				id="adminreg_open"><img src="../static/z/we.png"
 				draggable="false">后台管理</a> <a class="color_e4"><img
-				src="../static/z/phone.png" draggable="false"> 0371-88888598
+				src="/static/z/phone.png" draggable="false"> 0371-88888598
 				4006-371-555</a>
 
 		</div>
@@ -66,7 +66,7 @@
 
 	<!--banner图-->
 	<div class="banner index-banner">
-		<img alt="" src="../static/z/banner-2.jpg">
+		<img alt="" src="/static/z/banner-2.jpg">
 	</div>
 
 	<!--模块化课程-->
@@ -77,23 +77,23 @@
 				<table cellspacing="10">
 					<tbody>
 						<tr>
-							<td colspan="2"><a href="courseShow"> 
-							<img src="./static/z/html5.jpg" alt="" class="image scale"
+							<td colspan="2"><a href="/video/courseShow?subjectId=1"> 
+							<img src="/static/z/html5.jpg" alt="" class="image scale"
 									draggable="false">
 									<div class="headline">
 										<span>Web前端教程</span> <img src="../static/z/arrow.png" alt="">
 									</div>
 							</a></td>
 							<td>
-								<!--上线时修改id--> <a href="courseShow"> <img src="../static/z/ui.jpg" alt=""
+								<!--上线时修改id--> <a href="/video/courseShow?subjectId=6"> <img src="/static/z/ui.jpg" alt=""
 									class="image scale" draggable="false">
 									<div class="headline">
-										<span>UI设计教程</span> <img src="./static/z/arrow.png" alt="">
+										<span>UI设计教程</span> <img src="/static/z/arrow.png" alt="">
 									</div>
 							</a>
 							</td>
-							<td rowspan="2" class="one_three"><a class="opacity5" href=""> <img
-									src="./static/z/java.jpg" alt="" class="image"
+							<td rowspan="2" class="one_three"><a class="opacity5" href="/video/courseShow?subjectId=2"> <img
+									src="/static/z/java.jpg" alt="" class="image"
 									draggable="false">
 									<div class="headline">
 										<span>Java教程</span> <img src="./static/z/arrow.png" alt="">
@@ -101,14 +101,14 @@
 							</a></td>
 						</tr>
 						<tr>
-							<td><a class="opacity5" href=""> <img
-									src="./static/z/bigdata.jpg" alt="" class="image"
+							<td><a class="opacity5" href="/video/courseShow?subjectId=5"> <img
+									src="/static/z/bigdata.jpg" alt="" class="image"
 									draggable="false">
 									<div class="headline">
-										<span>大数据教程</span> <img src="./static/z/arrow.png" alt="">
+										<span>大数据教程</span> <img src="/static/z/arrow.png" alt="">
 									</div>
 							</a></td>
-							<td colspan="2"><a href="courseShow"> <img src="./static/z/python.jpg"
+							<td colspan="2"><a href="/video/courseShow?subjectId=10"> <img src="/static/z/python.jpg"
 									alt="" class="image scale" draggable="false">
 									<div class="headline">
 										<span>Python教程</span> <img src="./static/z/arrow.png" alt="">
@@ -116,14 +116,14 @@
 							</a></td>
 						</tr>
 						<tr>
-							<td colspan="2"><a href="courseShow"> <img src="./static/z/php.jpg" alt=""
+							<td colspan="2"><a href="/video/courseShow?subjectId=11"> <img src="/static/z/php.jpg" alt=""
 									class="image scale" draggable="false">
 									<div class="headline">
 										<span>PHP教程</span> <img src="./static/z/arrow.png" alt="">
 									</div>
 							</a></td>
 							<td colspan="2" class="three_two"><img
-								src="./static/z/qidai.jpg" alt="" class="image"
+								src="/static/z/qidai.jpg" alt="" class="image"
 								draggable="false">
 								<div class="headline">更多课程，敬请期待...</div></td>
 						</tr>
@@ -175,7 +175,7 @@
 	<!--页脚-->
 	<footer>
 		<ul>
-			<li><img src="./static/z/footer_logo.png" alt=""
+			<li><img src="/static/z/footer_logo.png" alt=""
 				draggable="false"></li>
 			<li class="mt25">
 				<h3>各校区地址</h3>
@@ -200,9 +200,9 @@
 					<li>电话:4006-371-555 0371-88888598</li>
 					<li class="erwei"><br>
 						<div>
-							<img class="weixin" src="./static/z/a_002.png" alt=""
+							<img class="weixin" src="/static/z/a_002.png" alt=""
 								draggable="false"> <img class="weibo"
-								src="./static/z/a.png" alt="" draggable="false">
+								src="/static/z/a.png" alt="" draggable="false">
 						</div></li>
 				</ul>
 			</li>
@@ -216,7 +216,7 @@
 	<div class="mask hidden" id="login">
 		<div class="mask_content">
 			<div class="mask_content_header">
-				<img src="../static/z/logo.png" alt="" class="ma">
+				<img src="/static/z/logo.png" alt="" class="ma">
 			</div>
 			<div class="mask_content_body">
 				<form name="loginForm" method="post"  action="userLogin.login">
@@ -244,7 +244,7 @@
 	<div class="mask hidden" id="adminLogin">
 		<div class="mask_content">
 			<div class="mask_content_header">
-				<img src="../static/z/logo.png" alt="" class="ma">
+				<img src="/static/z/logo.png" alt="" class="ma">
 			</div>
 			<div class="mask_content_body">
 				<form name="AdminloginForm" action="AdminLogin.login" method="post">
@@ -274,7 +274,7 @@
 	<div class="mask hidden" id="reg">
 		<div class="mask_content">
 			<div class="mask_content_header">
-				<img src="./static/z/logo.png" alt="" class="ma">
+				<img src="/static/z/logo.png" alt="" class="ma">
 			</div>
 			<div class="mask_content_body">
 				<form id="regForm"
@@ -306,18 +306,22 @@
 		</div>
 	</div>
 
-
-
-	<script src="static/z/jquery-1.js"></script>
-	<script src="static/z/gVerify.js"></script>
-	<script src="static/z/index.js"></script>
+<c:if test="${msg!=null }">
 	<script type="text/javascript">
-	window.onload=function (){ 	
+		alert("${msg}");
+	</script>
+</c:if>
+
+	<script src="/static/z/jquery-1.js"></script>
+	<script src="/static/z/gVerify.js"></script>
+	<script src="/static/z/index.js"></script>
+	<script type="text/javascript">
+	/* window.onload=function (){ 	
 		var msg="${msg}";
     	if(msg!=null&&msg!=""){
     		alert(msg);
     	}
-    }	
+    } */	
 	</script>
 </body>
 </html>
