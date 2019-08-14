@@ -16,8 +16,8 @@
 	content="智游教育在线课程视频,为您提供java,python,HTML5,UI,PHP,大数据等学科经典视频教程在线浏览学习,精细化知识点解析,深入浅出,想学不会都难,智游教育,学习成就梦想！">
 <script src="jQuery/jquery-3.4.1.min.js"></script>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<link rel="stylesheet" href="./static/z/base.css">
-<link rel="stylesheet" href="./static/z/css.css">
+<link rel="stylesheet" href="../static/z/base.css">
+<link rel="stylesheet" href="../static/z/css.css">
 <link rel="icon" href="http://localhost:8080/static/z/favicon.png"
 	type="image/png">
 <style type="text/css">
@@ -175,7 +175,7 @@
 	<!--页脚-->
 	<footer>
 		<ul>
-			<li><img src="./static/z/footer_logo.png" alt=""
+			<li><img src="../static/z/footer_logo.png" alt=""
 				draggable="false"></li>
 			<li class="mt25">
 				<h3>各校区地址</h3>
@@ -216,7 +216,7 @@
 	<div class="mask hidden" id="login">
 		<div class="mask_content">
 			<div class="mask_content_header">
-				<img src="./static/z/logo.png" alt="" class="ma">
+				<img src="../static/z/logo.png" alt="" class="ma">
 			</div>
 			<div class="mask_content_body">
 				<form name="loginForm" method="post"  action="userLogin.login">
@@ -244,7 +244,7 @@
 	<div class="mask hidden" id="adminLogin">
 		<div class="mask_content">
 			<div class="mask_content_header">
-				<img src="./static/z/logo.png" alt="" class="ma">
+				<img src="../static/z/logo.png" alt="" class="ma">
 			</div>
 			<div class="mask_content_body">
 				<form name="AdminloginForm" action="AdminLogin.login" method="post">
@@ -274,7 +274,7 @@
 	<div class="mask hidden" id="reg">
 		<div class="mask_content">
 			<div class="mask_content_header">
-				<img src="./static/z/logo.png" alt="" class="ma">
+				<img src="../static/z/logo.png" alt="" class="ma">
 			</div>
 			<div class="mask_content_body">
 				<form id="regForm"
@@ -308,9 +308,9 @@
 
 
 
-	<script src="./static/z/jquery-1.js"></script>
-	<script src="./static/z/gVerify.js"></script>
-	<script src="./static/z/index.js"></script>
+	<script src="../static/z/jquery-1.js"></script>
+	<script src="../static/z/gVerify.js"></script>
+	<script src="../static/z/index.js"></script>
 	<script type="text/javascript">
 	window.onload=function (){ 	
 		var msg="${msg}";

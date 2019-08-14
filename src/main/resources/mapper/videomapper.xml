@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhiyou.dao.VideoDao">
+
+
+ <resultMap type="Video" id="VideoMap">
+         <id column="video_id" property="video_id"/>
+         <result column="title" property="title"/>
+         <result column="detail" property="detail"/>
+         <result column="time" property="time"/>
+         <result column="video_url" property="video_url"/>
+         <result column="image_url" property="image_url"/>
+         <result column="play_num" property="play_num"/>
+         <association column="speaker_id"  property="speaker" select="com.zhiyou.dao.SpeakerDao.selectById"></association>
+          <association column="course_id" property="course" select="com.zhiyou.dao.CourseDao.selectById"></association>  
+     </resultMap>
+ 
+     <select id="selectAll" resultMap="VideoMap" parameterType="Video">
+        select * from video  
+     </select>
+     
+     <insert id="add" parameterType="Video" keyColumn="video_id" keyProperty="video_id" useGeneratedKeys="true">
+       insert into video(title,detail,time,speaker_id,course_id,video_url,image_url,play_num) 
+       values(#{title},#{detail},#{time},#{speaker_id},#{course_id},#{video_url},#{image_url},#{play_num})    
+     </insert>
+     
+     <insert id="delete">
+        delete from video where video_id=#{id}
+     </insert>
+     
+     <select id="selectById" resultMap="VideoMap">
+     select * from video where video_id=#{video_id}
+     </select>
+     
+      <insert id="update" parameterType="Video">  
+        update video
+       <set>
+        <if test="title!=null">
+            title=#{title},
+        </if>
+        <if test="detail!=null">
+            detail=#{detail},
+        </if>
+        <if test="time!=null">
+            time=#{time},
+        </if>
+        <if test="speaker_id!=0">
+            speaker_id=#{speaker_id},
+        </if>
+        <if test="course_id!=0">
+            course_id=#{course_id},
+        </if>
+        <if test="video_url!=null">
+            video_url=#{video_url},
+        </if>
+        <if test="image_url!=null">
+            image_url=#{image_url},
+        </if>
+        <if test="play_num!=null">
+            play_num=#{play_num}
+        </if>
+        </set> 
+        where video_id=#{video_id}
+     </insert>
+     
+     
+      <select id="selectLimit" resultMap="VideoMap">
+     select * from video limit #{page},#{pageSize}
+     
+     </select>
+     
+     <select id="selectCount" resultType="int">
+     select count(video_id) from video
+     </select>
+     
+     <delete id="deleteAllVideo">
+     delete from video where video_id in
+     <foreach collection="str" item="ids" separator="," index="number" open="(" close=")">
+             #{ids}
+        </foreach>   
+     </delete>
+    
+    
+     <select id="selectLike" resultMap="VideoMap" parameterType="Video">
+     <include refid="a"/>
+     </select>     
+     <sql id="a">
+      select * from video 
+         <trim prefix="where" prefixOverrides="and|gg">
+        <if test="title!=null">
+        <bind name="title" value="'%'+title+'%'"/>
+          title like #{title}
+        </if>
+         <if test="speaker_id != 0">
+         <bind name="speaker_id" value="'%'+speaker_id+'%'"/>
+           and speaker_id like #{speaker_id}
+        </if>
+        <if test="course_id != 0">
+        <bind name="course_id" value="'%'+course_id+'%'"/>
+           and course_id like #{course_id}
+        </if>
+        </trim>   
+        limit #{page},#{pageSize}
+     </sql>
+     
+     
+      <select id="selectLikeCount" resultType="int" parameterType="Video">
+     <include refid="b"/>
+     </select>     
+     <sql id="b">
+      select count(video_id) from video 
+         <trim prefix="where" prefixOverrides="and|gg">
+        <if test="title!=null">
+        <bind name="title" value="'%'+title+'%'"/>
+          title like #{title}
+        </if>
+         <if test="speaker_id!=0">
+         <bind name="speaker_id" value="'%'+speaker_id+'%'"/>
+           and speaker_id like #{speaker_id}
+        </if>
+        <if test="course_id!=0">
+        <bind name="course_id" value="'%'+course_id+'%'"/>
+           and course_id like #{course_id}
+        </if>
+        </trim>   
+     </sql>
+     
+</mapper>

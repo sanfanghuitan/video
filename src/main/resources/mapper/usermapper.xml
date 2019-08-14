@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhiyou.dao.UserDao">
+
+
+ <resultMap type="com.zhiyou.model.User" id="userMap">
+         <id column="id" property="id"/>
+         <result column="accounts" property="accounts"/>
+         <result column="phone" property="phone"/>
+         <result column="password" property="password"/>
+         <result column="nickname" property="nickname"/>
+         <result column="sex" property="sex"/>
+         <result column="birthday" property="birthday"/>
+         <result column="address" property="address"/>
+         <result column="imgurl" property="imgurl"/>
+     </resultMap>
+ 
+     <select id="selectAll" resultMap="userMap" parameterType="com.zhiyou.model.User">
+        select * from user  
+     </select>
+     
+     <insert id="add" parameterType="com.zhiyou.model.User" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+       insert into user(accounts,phone,password,nickname,sex,birthday,address,imgurl,createtime) 
+       values(#{accounts},#{phone},#{password},#{nickname},#{sex},#{birthday},#{address},#{imgurl},#{createtime})    
+     </insert>
+     
+     <insert id="delete">
+        delete from user where id=#{id}
+     </insert>
+     
+     <select id="selectByAccount" resultMap="userMap">
+     select * from user where accounts=#{accounts}
+     </select>
+     
+      <insert id="update" parameterType="com.zhiyou.model.User">  
+        update user
+       <set>
+        <if test="phone!=null">
+            phone=#{phone},
+        </if>
+        <if test="password!=null">
+            password=#{password},
+        </if>
+        <if test="nickname!=null">
+            nickname=#{nickname},
+        </if>
+        <if test="sex!=null">
+            sex=#{sex},
+        </if>
+        <if test="birthday!=null">
+            birthday=#{birthday},
+        </if>
+        <if test="address!=null">
+            address=#{address},
+        </if>
+        <if test="imgurl!=null">
+            imgurl=#{imgurl}
+        </if>
+        </set> 
+        where id=#{id}
+     </insert>
+    
+</mapper>

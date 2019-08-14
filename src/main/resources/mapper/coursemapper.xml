@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhiyou.dao.CourseDao">
+
+
+ <resultMap type="Course" id="CourseMap">
+         <id column="id" property="id"/>
+         <result column="course_title" property="course_title"/>
+         <result column="course_desc" property="course_desc"/>
+         <association column="subject_id"  property="subject" select="com.zhiyou.dao.SubjectDao.selectById"/>
+         <collection property="video" ofType="Video" javaType="java.util.ArrayList">
+         <id column="video_id" property="video_id"/>
+         <result column="title" property="title"/>
+         <result column="detail" property="detail"/>
+         <result column="time" property="time"/>
+         <result column="speaker_id" property="speaker_id"/>
+         <result column="course_id" property="course_id"/>
+         <result column="video_url" property="video_url"/>
+         <result column="image_url" property="image_url"/>
+         <result column="play_num" property="play_num"/>
+       </collection>
+     </resultMap>
+ 
+     <select id="selectAll" resultMap="CourseMap" parameterType="Course">
+        select * from course c left join video v on c.id=v.course_id
+     </select>
+     
+     <insert id="add" parameterType="Course" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+       insert into course(course_title,course_desc,subject_id) 
+       values(#{course_title},#{course_desc},#{subject_id})    
+     </insert>
+     
+     <insert id="delete">
+        delete from course where id=#{id}
+     </insert>
+     
+     <select id="selectById" resultMap="CourseMap">
+     select * from course c left join video v on c.id=v.course_id where id=#{id}
+     </select>
+     
+     <select id="selectOne" resultMap="CourseMap">
+     select * from course where id=#{id}
+     </select>
+     
+     
+     
+     
+     
+      <insert id="update" parameterType="Course">  
+        update course
+       <set>
+        <if test="course_title!=null">
+            course_title=#{course_title},
+        </if>
+        <if test="course_desc!=null">
+            course_desc=#{course_desc},
+        </if>
+        <if test="subject_id!=null">
+            subject_id=#{subject_id}
+        </if>
+        </set> 
+        where id=#{id}
+     </insert>
+     
+     
+      <select id="selectLimit" resultMap="CourseMap">
+     select * from course limit #{page},#{pageSize}
+     
+     </select>
+     
+     <select id="selectCount" resultType="int">
+     select count(id) from course
+     </select>
+     
+     <delete id="deleteAll">
+     delete from course where id in
+     <foreach collection="str" item="ids" separator="," index="number" open="(" close=")">
+             #{ids}
+        </foreach>
+     
+     
+     </delete>
+    
+</mapper>

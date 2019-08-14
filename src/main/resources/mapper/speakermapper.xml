@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhiyou.dao.SpeakerDao">
+
+
+ <resultMap type="Speaker" id="SpeakerMap">
+         <id column="id" property="id"/>
+         <result column="speaker_name" property="speaker_name"/>
+         <result column="speaker_desc" property="speaker_desc"/>
+         <result column="speaker_job" property="speaker_job"/>
+         <result column="pic_url" property="pic_url"/>     
+     </resultMap>
+ 
+     <select id="selectAll" resultMap="SpeakerMap" parameterType="Speaker">
+        select * from speaker  
+     </select>
+     
+     <insert id="add" parameterType="Speaker" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+       insert into speaker(speaker_name,speaker_desc,speaker_job,pic_url) 
+       values(#{speaker_name},#{speaker_desc},#{speaker_job},#{pic_url})    
+     </insert>
+     
+     <insert id="delete">
+        delete from speaker where id=#{id}
+     </insert>
+     
+     <select id="selectById" resultMap="SpeakerMap">
+     select * from speaker where id=#{id}
+     </select>
+     
+      <insert id="update" parameterType="Speaker">  
+        update speaker
+       <set>
+        <if test="speaker_name!=null">
+            speaker_name=#{speaker_name},
+        </if>
+        <if test="speaker_desc!=null">
+            speaker_desc=#{speaker_desc},
+        </if>
+        <if test="speaker_job!=null">
+            speaker_job=#{speaker_job},
+        </if>
+        <if test="pic_url!=null">
+            pic_url=#{pic_url}
+        </if>
+        </set> 
+        where id=#{id}
+     </insert>
+     
+     
+      <select id="selectLimit" resultMap="SpeakerMap">
+     select * from speaker limit #{page},#{pageSize}
+     
+     </select>
+     
+     <select id="selectCount" resultType="int">
+     select count(id) from speaker
+     </select>
+     
+     <delete id="deleteAllSpeaker">
+     delete from speaker where id in
+     <foreach collection="str" item="ids" separator="," index="number" open="(" close=")">
+             #{ids}
+        </foreach>
+     
+     
+     </delete>
+    
+</mapper>

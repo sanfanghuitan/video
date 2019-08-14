@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhiyou.dao.AdminDao">
+
+
+ <resultMap type="Admin" id="adminMap">
+         <id column="id" property="id"/>
+         <result column="accounts" property="accounts"/>
+         <result column="password" property="password"/>
+         <result column="admin_remark" property="admin_remark"/>
+     </resultMap>
+ 
+     <select id="selectAll" resultMap="adminMap" parameterType="Admin">
+        select * from admin  
+     </select>
+     
+     <insert id="add" parameterType="Admin" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+       insert into user(accounts,phone,password,nickname,sex,birthday,address,imgurl,createtime) 
+       values(#{accounts},#{phone},#{password},#{nickname},#{sex},#{birthday},#{address},#{imgurl},#{createtime})    
+     </insert>
+     
+     <insert id="delete">
+        delete from admin where id=#{id}
+     </insert>
+     
+     <select id="selectByAccount" resultMap="adminMap">
+     select * from admin where accounts=#{accounts}
+     </select>
+     
+      <insert id="update" parameterType="Admin">  
+        update admin
+       <set>
+        <if test="phone!=null">
+            phone=#{phone},
+        </if>
+        <if test="password!=null">
+            password=#{password},
+        </if>
+        <if test="nickname!=null">
+            nickname=#{nickname}
+        </if>
+        <if test="sex!=null">
+            sex=#{sex}
+        </if>
+        <if test="birthday!=null">
+            birthday=#{birthday}
+        </if>
+        <if test="address!=null">
+            address=#{address}
+        </if>
+        <if test="imgurl!=null">
+            imgurl=#{imgurl}
+        </if>
+        </set> 
+        where id=#{id}
+     </insert>
+    
+</mapper>
