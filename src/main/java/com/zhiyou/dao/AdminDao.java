@@ -10,6 +10,6 @@ public interface AdminDao {
 	void delete();
 	void update();
 	List<Admin> selectAll();
-	Admin selectByAccount(String account);
+	Admin selectByAccount(String accounts);
 
 }

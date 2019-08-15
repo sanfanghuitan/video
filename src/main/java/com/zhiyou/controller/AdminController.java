@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zhiyou.model.Admin;
 import com.zhiyou.service.AdminService;
@@ -25,13 +26,12 @@ public class AdminController {
 	
 	
 	@RequestMapping("AdminLogin")
-	public void loginCheck(String adminPassword,String adminAccount,
+	public String loginCheck(String adminPassword,String adminAccount,
 			HttpServletRequest request,HttpServletResponse response) throws IOException{
 		
 		Admin admin = adminService.selectByAccount(adminAccount);
 		request.getSession().setAttribute("admin", admin);		
-		response.sendRedirect("courseShow");
-		
+		return "redirect:/courseShow";
 	}
 	
 	@RequestMapping("adminExit")
@@ -41,9 +41,11 @@ public class AdminController {
 	}
 	
 	@RequestMapping("checkAdminAccount.login")
-    public void checkAdminAccount(String accounts,HttpServletResponse resp) throws ServletException, IOException{		 
+	@ResponseBody
+    public void checkAdminAccount(String account,HttpServletResponse resp) throws ServletException, IOException{		 
 	
-		Admin admin = adminService.selectByAccount(accounts);
+		System.out.println(account);
+		Admin admin = adminService.selectByAccount(account);
 		if(admin!=null){	
 			resp.getWriter().append("success");
 		}else{
