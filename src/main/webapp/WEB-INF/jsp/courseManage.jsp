@@ -88,7 +88,7 @@ th {
 				</thead>
 				<tbody>
  
-                   <c:forEach items="${course}" var="i">
+                   <c:forEach items="${pageInfo.list}" var="i">
 					<tr class="checkall">
 						<td><input type="checkbox" name="box" id="checkbox" class="checkall" value="${i.id}"></td>
 						<td id="id">${i.id }</td>
@@ -101,7 +101,7 @@ th {
 					</tr>
 				</c:forEach>	
 
-				<tr>
+<%-- 				<tr>
 						<td colspan="6"><font>总共${count}条,当前第${page }页</font> 
 						<c:if test="${count%5==0}">
 		                <c:set var="page" value="${count/5}"></c:set>
@@ -113,13 +113,57 @@ th {
 		                <a href="CourseShow.do?page=${i}">第${i}页</a>
 	                     </c:forEach>
 	                     </td>
-					</tr>
+					</tr> --%>
 				</tbody>
 			</table>
 
 		</div>
 	</form>
 
+
+
+	<!-- 显示分页信息 -->
+	<div class="row">
+		<!-- 分页文字信息 -->
+		<div class="col-md-6">当前第${pageInfo.pageNum }页 共${pageInfo.pages }页
+			总共${pageInfo.total}条数据</div>
+		<!-- 分页条信息 -->
+		<div class="col-md-6">
+			<nav aria-label="Page navigation">
+			<ul class="pagination">
+				<li><a href="courseShow?pn=1">首页</a></li>
+				<c:if test="${pageInfo.hasPreviousPage }">
+
+					<li><a href="courseShow?pn=${pageInfo.pageNum-1}"
+						aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+					</a></li>
+
+				</c:if>
+				<c:forEach items="${pageInfo.navigatepageNums }" var="pageNum">
+					<c:if test="${pageNum==pageInfo.pageNum }">
+						<li class="active"><a href="courseShow?pn=${pageNum}">${pageNum}</a></li>
+					</c:if>
+					<c:if test="${pageNum!=pageInfo.pageNum }">
+						<li><a href="courseShow?pn=${pageNum}">${pageNum}</a></li>
+					</c:if>
+
+				</c:forEach>
+
+				<c:if test="${pageInfo.hasNextPage }">
+
+
+					<li><a href="courseShow?pn=${pageInfo.pageNum+1}"
+						aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+					</a></li>
+
+				</c:if>
+
+				<li><a href="courseShow?pn=${pageInfo.pages}">末页</a></li>
+			</ul>
+			</nav>
+
+		</div>
+	</div>
 
 	<div id="modal-background" class=""></div>
 	<div id="confirm-modal" class="modal fade role" dialog=""

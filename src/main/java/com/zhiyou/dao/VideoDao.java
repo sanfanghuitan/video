@@ -16,7 +16,7 @@ public interface VideoDao {
 	int selectCount();
 	List<Video> selectLimit(@Param("page") int page,@Param("pageSize") int pageSize);
 	void deleteAllVideo(@Param("str") int[] str);
-	List<Video> selectLike(@Param("title") String title,@Param("speaker_id") int speaker_id,@Param("course_id") int course_id,@Param("page") int page,@Param("pageSize") int pageSize);
+	List<Video> selectLike(@Param("title") String title,@Param("speaker_id") int speaker_id,@Param("course_id") int course_id);
 	int selectLikeCount(@Param("title") String title,@Param("speaker_id") int speaker_id,@Param("course_id") int course_id);
 	Video selectVideo(int id);
 

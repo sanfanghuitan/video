@@ -28,8 +28,8 @@
        </collection>
      </resultMap>
  
-     <select id="selectAll" resultMap="CourseMap" parameterType="com.zhiyou.model.Course">
-        select * from course c left join video v on c.id=v.course_id
+     <select id="selectAll" resultType="com.zhiyou.model.Course" parameterType="com.zhiyou.model.Course">
+        select * from course
      </select>
      
      <insert id="add" parameterType="com.zhiyou.model.Course" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
@@ -48,10 +48,6 @@
      <select id="selectOne" resultMap="CourseMap">
      select * from course where id=#{id}
      </select>
-     
-     
-     
-     
      
       <insert id="update" parameterType="com.zhiyou.model.Course">  
         update course

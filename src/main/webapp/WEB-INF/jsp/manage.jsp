@@ -39,9 +39,10 @@ th {
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-9">
 			<ul class="nav navbar-nav">
-				<li class="active"><a>视频管理</a></li>
-				<li><a onclick="SpeakerShow()">主讲人管理</a></li>
-				<li><a onclick="courseShow()">课程管理</a></li>
+				<li><a href="VideoShow.do">视频管理</a></li>
+				<li><a href="SpeakerShow.do">主讲人管理</a></li>
+				<li href="courseShow.do"><a>课程管理</a></li>
+				<li class="active"><a>管理员管理</a></li>
 			</ul>
 			<p class="navbar-text navbar-right">
 				<span>${admin.accounts}</span> <i class="glyphicon glyphicon-log-in"
@@ -58,9 +59,11 @@ th {
 
 	<div class="jumbotron" style="padding-top: 15px; padding-bottom: 15px;">
 		<div class="container">
-			<h2>视频管理</h2>
+			<h2>课程管理</h2>
 		</div>
 	</div>
+
+	<form>
 		<div class="container">
 			<button onclick="showAddPage()" type="button"
 				class="btn btn-info dropdown-toggle" data-toggle="dropdown"
@@ -68,30 +71,6 @@ th {
 
 			<button  type="button" id="btn" onclick="deleteAll()"
 				class="btn btn-info dropdown-toggle">批量删除</button>
-				
-		<form id="selectForm" class="navbar-text navbar-right" action="selectLikeVideo.do">
-				
-			<input  type="text" id="btn" name="title"
-			class="btn btn-info" placeholder="标题" style="background-color:white;color: black" value="${oldVideo.title}">
-				<select name="speaker_id" id="speaker_id"  class="btn btn-info dropdown-toggle"">					
-						<option value="0" <c:if test="${oldVideo eq null }">selected="selected"</c:if>>请选择讲师</option>						
-						<c:forEach items="${speaker}" var="i">
-					   <option value="${i.id}" <c:if test="${oldVideo.speaker_id eq i.id}">selected</c:if>>${i.speaker_name }</option>
-					  </c:forEach>						
-					</select>
-				
-				<select name="course_id" id="course_id" class="btn btn-info dropdown-toggle">					
-						<option value="0" <c:if test="${oldVideo eq null }">selected="selected" </c:if>>请选择所属课程</option>						
-						<c:forEach items="${course}" var="i">
-					   <option value="${i.id}" <c:if test="${oldVideo.course_id eq i.id}">selected</c:if>>${i.course_title }</option>
-					  </c:forEach>						
-					</select>
-				
-				
-				<button type="submit" class="btn btn-info">查询</button>
-				
-				</form>
-				
 		</div>
 
 		<div class="container" style="margin-top: 20px;">
@@ -100,36 +79,30 @@ th {
 				style="text-align: center; table-layout: fixed;">
 				<thead>
 					<tr class="active">
-						<th style="width: 12%"><input type="checkbox" id="all"></th>
-						<th style="width: 12%">序号</th>
-						<th style="width: 12%">名称</th>
-						<th style="width: 50%">简介</th>
-					    <th style="width: 12%">讲师</th>
-					    <th style="width: 12%">时长</th>
-					    <th style="width: 12%">播放次数</th>
-						<th style="width: 10%">编辑</th>
-						<th style="width: 10%">删除</th>
+						<th><input type="checkbox" id="all"></th>
+						<th>序号</th>
+						<th style="width: 16%">标题</th>
+						<th style="width: 60%">简介</th>
+						<th>编辑</th>
+						<th>删除</th>
 					</tr>
 				</thead>
 				<tbody>
  
                    <c:forEach items="${pageInfo.list}" var="i">
 					<tr class="checkall">
-						<td onclick="count()"><input type="checkbox" name="box" id="checkbox" class="checkall" value="${i.video_id}"></td>
-						<td id="id">${i.video_id}</td>
-						<td id="course_title">${i.title}</td>
+						<td><input type="checkbox" name="box" id="checkbox" class="checkall" value="${i.id}"></td>
+						<td id="id">${i.id }</td>
+						<td id="course_title">${i.course_title}</td>						
 						<td
-							style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">${i.detail}</td>
-							<td>${i.speaker.speaker_name}</td>
-							<td>${i.time}</td>
-							<td>${i.play_num}</td>
-						<td><a href="updateVideo.do?id=${i.video_id}">✎</a></td>
-						<td><a href="deleteVideo.do?id=${i.video_id}" id="delete">X</a></td>
+							style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">${i.course_desc}</td>
+						<td><a href="updateCourse.do?id=${i.id}">✎</a></td>
+						<td><a href="deleteCourse.do?id=${i.id}">X</a></td>
 					</tr>
 				</c:forEach>	
 
-				<%-- <tr>
-						<td colspan="9"><font>总共${count}条,当前第${page }页</font> 
+<%-- 				<tr>
+						<td colspan="6"><font>总共${count}条,当前第${page }页</font> 
 						<c:if test="${count%5==0}">
 		                <c:set var="page" value="${count/5}"></c:set>
 	                    </c:if>
@@ -137,22 +110,15 @@ th {
 		                <c:set var="page" value="${count/5+1}"></c:set>
 	                    </c:if>
 	                    <c:forEach var="i" begin="1" end="${page}">
-	                    <c:if test="${oldVideo eq null}"><a href="VideoShow.do?page=${i}">${i}</a></c:if>
-		                <c:if test="${oldVideo != null}">
-		                <a href="selectLikeVideo.do?page=${i}&title=${oldVideo.title}&speaker_id=${oldVideo.speaker_id}&course_id=${oldVideo.course_id}">${i}</a></c:if>
-
-	                 	                
+		                <a href="CourseShow.do?page=${i}">第${i}页</a>
 	                     </c:forEach>
-	                     
-	                     
-	                 
 	                     </td>
 					</tr> --%>
 				</tbody>
 			</table>
 
 		</div>
-
+	</form>
 
 
 
@@ -199,10 +165,6 @@ th {
 		</div>
 	</div>
 
-
-
-
-
 	<div id="modal-background" class=""></div>
 	<div id="confirm-modal" class="modal fade role" dialog=""
 		tabindex="-1">
@@ -224,9 +186,10 @@ th {
 	
 	<script>
 		function showAddPage(){
-			location.href="addVideoShow.do";
+			location.href="addCourseShow.do";
 		}
 	
+		
 		$("#all").click(function(){
 			if(this.checked){
 			$(".checkall :checkbox").prop("checked", true);
@@ -234,8 +197,6 @@ th {
 			$(".checkall :checkbox").prop("checked", false);
 			}
 			});
-		
-		
 		
 		function deleteAll(){		
 			var a=confirm("温馨提示~~确认要删除吗?");
@@ -248,32 +209,17 @@ th {
 						i++;
 					}			
 				})
-				location.href="deleteAllVideo.do?str="+str;
+				location.href="deleteAll.do?str="+str;		
 			}else{
 				document.location.reload();
 			}				
 		}
-	
-		function count(){
-			var i=0;
-			$.each($("#checkbox"),function(){
-				if(this.checked){
-					i++;
-					$("#i").text(i);
-				}
-			})
-		}
-		
-		$(document).on("click", ".box", count());
 		
 		
-		function courseShow(){
-			location.href="CourseShow.do";
-		}
-		function SpeakerShow(){
-			location.href="SpeakerShow.do";
-		}
-	
+		
+		
+		
+		
 		function exit(){
 			location.href="adminExit.do";
 		}

@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.zhiyou.model.Admin;
 import com.zhiyou.service.AdminService;
 /**
- * 管理员登录校验退出
- * @author 李爽
+ * 锟斤拷锟斤拷员锟斤拷录校锟斤拷锟剿筹拷
+ * @author 锟斤拷爽
  *
  */
 @Controller
