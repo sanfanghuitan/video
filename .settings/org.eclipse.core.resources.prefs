@@ -2,6 +2,7 @@ eclipse.preferences.version=1
 encoding//src/main/java=UTF-8
 encoding//src/main/java/com/zhiyou/Application.java=UTF-8
 encoding//src/main/java/com/zhiyou/config/MyBatisConfig.java=UTF-8
+encoding//src/main/java/com/zhiyou/controller/AdminController.java=UTF-8
 encoding//src/main/resources=UTF-8
 encoding//src/main/resources/application.properties=UTF-8
 encoding/<project>=UTF-8

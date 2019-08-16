@@ -41,6 +41,7 @@ th {
 			<ul class="nav navbar-nav">
 				<li><a href="VideoShow.do">视频管理</a></li>
 				<li><a href="SpeakerShow.do">主讲人管理</a></li>
+				<li id="control"><a href="adminManage.do">管理员管理</a></li>
 				<li class="active"><a>课程管理</a></li>
 			</ul>
 			<p class="navbar-text navbar-right">
@@ -101,8 +102,11 @@ th {
 					</tr>
 				</c:forEach>	
 
-<%-- 				<tr>
-						<td colspan="6"><font>总共${count}条,当前第${page }页</font> 
+			<tr>
+						<td colspan="6">
+						
+					<%-- 	
+						<font>总共${count}条,当前第${page }页</font> 
 						<c:if test="${count%5==0}">
 		                <c:set var="page" value="${count/5}"></c:set>
 	                    </c:if>
@@ -111,24 +115,13 @@ th {
 	                    </c:if>
 	                    <c:forEach var="i" begin="1" end="${page}">
 		                <a href="CourseShow.do?page=${i}">第${i}页</a>
-	                     </c:forEach>
-	                     </td>
-					</tr> --%>
-				</tbody>
-			</table>
-
-		</div>
-	</form>
-
-
-
-	<!-- 显示分页信息 -->
-	<div class="row">
-		<!-- 分页文字信息 -->
-		<div class="col-md-6">当前第${pageInfo.pageNum }页 共${pageInfo.pages }页
+	                     </c:forEach> --%>
+	                     
+	                     
+	                     <div class="col-md-6">当前第${pageInfo.pageNum }页 共${pageInfo.pages }页
 			总共${pageInfo.total}条数据</div>
-		<!-- 分页条信息 -->
-		<div class="col-md-6">
+	                     
+	                     <div class="col-md-6">
 			<nav aria-label="Page navigation">
 			<ul class="pagination">
 				<li><a href="courseShow?pn=1">首页</a></li>
@@ -150,19 +143,33 @@ th {
 				</c:forEach>
 
 				<c:if test="${pageInfo.hasNextPage }">
-
-
 					<li><a href="courseShow?pn=${pageInfo.pageNum+1}"
 						aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 					</a></li>
-
 				</c:if>
-
 				<li><a href="courseShow?pn=${pageInfo.pages}">末页</a></li>
 			</ul>
 			</nav>
 
 		</div>
+	                     
+	                     
+	                     
+	                     </td>
+					</tr> 
+				</tbody>
+			</table>
+
+		</div>
+	</form>
+
+<input type="hidden" id="au" value="${admin.authority}">
+	<!-- 显示分页信息 -->
+	<div class="row">
+		<!-- 分页文字信息 -->
+		
+		<!-- 分页条信息 -->
+		
 	</div>
 
 	<div id="modal-background" class=""></div>
@@ -184,48 +191,47 @@ th {
 	</div>
 	<div id="modal-background" class=""></div>
 	
-	<script>
-		function showAddPage(){
-			location.href="addCourseShow.do";
-		}
+<script type="text/javascript">
+
+function showAddPage(){
+	location.href="addCourseShow.do";
+}
+	function exit(){
+		location.href="adminExit.do";
+	}
 	
-		
-		$("#all").click(function(){
-			if(this.checked){
-			$(".checkall :checkbox").prop("checked", true);
-			}else{
-			$(".checkall :checkbox").prop("checked", false);
-			}
-			});
-		
-		function deleteAll(){		
-			var a=confirm("温馨提示~~确认要删除吗?");
-			var str=new Array;
-			var i=0;	
-			if(a==true){
-				$.each($("input[name='box']"),function(){
-					if(this.checked){
-						str[i]=$(this).val();
-						i++;
-					}			
-				})
-				location.href="deleteAll.do?str="+str;		
-			}else{
-				document.location.reload();
-			}				
+	
+	$("#all").click(function(){
+		if(this.checked){
+		$(".checkall :checkbox").prop("checked", true);
+		}else{
+		$(".checkall :checkbox").prop("checked", false);
 		}
-		
-		
-		
-		
-		
-		
-		function exit(){
-			location.href="adminExit.do";
-		}
-		
-	</script>
+		});
+	
+	
+	function deleteAll(){		
+		var a=confirm("温馨提示~~确认要删除吗?");
+		var str=new Array;
+		var i=0;	
+		if(a==true){
+			$.each($("input[name='box']"),function(){
+				if(this.checked){
+					str[i]=$(this).val();
+					i++;
+				}			
+			})
+			location.href="deleteAll.do?str="+str;		
+		}else{
+			document.location.reload();
+		}				
+	}	
+/* 	window.onload = function(){
+    	if((${user.authority})==false){
+    		var h = document.getElementById("control");
+    		h.style.display="none";
+    	}	
+    } */	
+</script>
 </body>
-
-
 </html>

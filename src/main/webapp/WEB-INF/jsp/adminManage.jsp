@@ -41,7 +41,7 @@ th {
 			<ul class="nav navbar-nav">
 				<li><a href="VideoShow.do">视频管理</a></li>
 				<li><a href="SpeakerShow.do">主讲人管理</a></li>
-					<li class="active"><a>管理员管理</a></li>
+					<li class="active" id="hidden"><a>管理员管理</a></li>
 				<li href="courseShow.do"><a>课程管理</a></li>
 			
 			</ul>
@@ -60,7 +60,7 @@ th {
 
 	<div class="jumbotron" style="padding-top: 15px; padding-bottom: 15px;">
 		<div class="container">
-			<h2>课程管理</h2>
+			<h2>管理员管理</h2>
 		</div>
 	</div>
 
@@ -92,18 +92,23 @@ th {
  
                    <c:forEach items="${pageInfo.list}" var="i">
 					<tr class="checkall">
-						<td><input type="checkbox" name="box" id="checkbox" class="checkall" value="${i.id}"></td>
-						<td id="id">${i.id }</td>
-						<td id="course_title">${i.course_title}</td>						
+						<td><input type="checkbox" name="box" id="checkbox" class="checkall" value="${i.admin_id}"></td>
+						<td id="id">${i.admin_id }</td>
+						<td id="course_title">${i.accounts}</td>						
 						<td
-							style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">${i.course_desc}</td>
-						<td><a href="updateCourse.do?id=${i.id}">✎</a></td>
-						<td><a href="deleteCourse.do?id=${i.id}">X</a></td>
+							style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+							
+							<c:if test="${i.authority eq '1'}">超级管理员</c:if>
+							
+							<c:if test="${i.authority eq '0'}">普通管理员</c:if>
+							</td>
+						<td><a href="updateCourse.do?id=${i.admin_id}">✎</a></td>
+						<td><a href="deleteCourse.do?id=${i.admin_id}">X</a></td>
 					</tr>
 				</c:forEach>	
 
-<%-- 				<tr>
-						<td colspan="6"><font>总共${count}条,当前第${page }页</font> 
+				<tr>
+						<td colspan="6"><%-- <font>总共${count}条,当前第${page }页</font> 
 						<c:if test="${count%5==0}">
 		                <c:set var="page" value="${count/5}"></c:set>
 	                    </c:if>
@@ -112,18 +117,9 @@ th {
 	                    </c:if>
 	                    <c:forEach var="i" begin="1" end="${page}">
 		                <a href="CourseShow.do?page=${i}">第${i}页</a>
-	                     </c:forEach>
-	                     </td>
-					</tr> --%>
-				</tbody>
-			</table>
-
-		</div>
-	</form>
-
-
-
-	<!-- 显示分页信息 -->
+	                     </c:forEach> --%>
+	                     
+	                     <!-- 显示分页信息 -->
 	<div class="row">
 		<!-- 分页文字信息 -->
 		<div class="col-md-6">当前第${pageInfo.pageNum }页 共${pageInfo.pages }页
@@ -165,6 +161,21 @@ th {
 
 		</div>
 	</div>
+	                     
+	                     
+	                     
+	                     
+	                     </td>
+					</tr> 
+				</tbody>
+			</table>
+
+		</div>
+	</form>
+
+
+
+	
 
 	<div id="modal-background" class=""></div>
 	<div id="confirm-modal" class="modal fade role" dialog=""
@@ -186,6 +197,15 @@ th {
 	<div id="modal-background" class=""></div>
 	
 	<script>
+	
+	window.onload = function(){
+    	if((${user.authority})==false){
+    		var h = document.getElementById("hidden");
+    		h.style.display="none";
+    	}	
+    }
+	
+	
 		function showAddPage(){
 			location.href="addCourseShow.do";
 		}

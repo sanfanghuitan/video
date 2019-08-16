@@ -1,4 +1,4 @@
-var Confirm = {
+/*var Confirm = {
     modalContainerId: '#modal-container',
     modalBackgroundId: '#modal-background',
     modalMainId: '#confirm-modal',
@@ -120,9 +120,16 @@ var Confirm = {
         $(self.modalMainId).css('display', 'none');
     }
 };
+*/
 
 $(document).ready(function() {
-    Confirm.init();
+	if(($('#au').val())==0){
+		var h = document.getElementById("control");
+		h.style.display="none";
+	}	
+	
+	
+	//  Confirm.init();
 });
 
 //www.sucaijiayuan.com 素材家园

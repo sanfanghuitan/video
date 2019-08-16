@@ -6,6 +6,15 @@ public class Admin {
 	private String accounts;
 	private String password;
 	private String admin_remark;
+	private int authority;
+	
+	
+	public int getAuthority() {
+		return authority;
+	}
+	public void setAuthority(int authority) {
+		this.authority = authority;
+	}
 	public int getAdmin_id() {
 		return admin_id;
 	}
@@ -30,17 +39,20 @@ public class Admin {
 	public void setAdmin_remark(String admin_remark) {
 		this.admin_remark = admin_remark;
 	}
+
 	@Override
 	public String toString() {
 		return "Admin [admin_id=" + admin_id + ", accounts=" + accounts + ", password=" + password + ", admin_remark="
-				+ admin_remark + "]";
+				+ admin_remark + ", authority=" + authority + "]";
 	}
-	public Admin(int admin_id, String accounts, String password, String admin_remark) {
+	
+	public Admin(int admin_id, String accounts, String password, String admin_remark, int authority) {
 		super();
 		this.admin_id = admin_id;
 		this.accounts = accounts;
 		this.password = password;
 		this.admin_remark = admin_remark;
+		this.authority = authority;
 	}
 	public Admin() {
 		super();
