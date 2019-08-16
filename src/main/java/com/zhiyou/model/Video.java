@@ -1,6 +1,8 @@
 package com.zhiyou.model;
 
-public class Video {
+import java.io.Serializable;
+
+public class Video implements Serializable {
 	private int video_id;
 	private String title;
 	private String detail;

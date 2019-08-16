@@ -1,24 +1,26 @@
 package com.zhiyou.utils;
 
+import java.io.Serializable;
+
 /**
- * video自定义响应结构
- * @author 李爽
+ * video锟皆讹拷锟斤拷锟斤拷应锟结构
+ * @author 锟斤拷爽
  *
  */
-public class VideoResult {
+public class VideoResult implements Serializable {
 	
-	//响应业务状态
+	//锟斤拷应业锟斤拷状态
 	private Integer status;
 	
-	//响应消息
+	//锟斤拷应锟斤拷息
 	private String msg;
 	
-	//响应的数据
+	//锟斤拷应锟斤拷锟斤拷锟斤拷
 	private Object data;
 
 	
 	/**
-	 * 创建一个VideoResult
+	 * 锟斤拷锟斤拷一锟斤拷VideoResult
 	 * @param status
 	 * @param msg
 	 * @param data
@@ -30,7 +32,7 @@ public class VideoResult {
 	}
 	
 	/**
-	 *  返回成功状态及数据
+	 *  锟斤拷锟截成癸拷状态锟斤拷锟斤拷锟斤拷
 	 * @param data
 	 * @return
 	 */
@@ -41,7 +43,7 @@ public class VideoResult {
 	}
 	
 	/**
-	 * 返回一个无数据的成功状态
+	 * 锟斤拷锟斤拷一锟斤拷锟斤拷锟斤拷锟捷的成癸拷状态
 	 * @return
 	 */
 	public static VideoResult success(){
@@ -50,7 +52,7 @@ public class VideoResult {
 	
 	
 	
-	//下面是get/set及构造方法,不用看了
+	//锟斤拷锟斤拷锟斤拷get/set锟斤拷锟斤拷锟届方锟斤拷,锟斤拷锟矫匡拷锟斤拷
 	public Integer getStatus() {
 		return status;
 	}
@@ -88,7 +90,7 @@ public class VideoResult {
 	
 	
 	/**
-	 * 只传数据的构造方法
+	 * 只锟斤拷锟斤拷锟捷的癸拷锟届方锟斤拷
 	 * @param data
 	 */
 	public VideoResult(Object data){
