@@ -100,7 +100,6 @@
            and course_id like #{course_id}
         </if>
         </trim>   
-        limit #{page},#{pageSize}
      </sql>
      
      

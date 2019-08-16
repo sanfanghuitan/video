@@ -16,7 +16,7 @@ public interface VideoService {
 	int selectCount();
 	List<Video> selectLimit(int page,int pageSize);
 	void deleteAllVideo(int[] str);
-	List<Video> selectLike(String title,int speaker_id,int course_id,int page,int pageSize);
+	List<Video> selectLike(String title,int speaker_id,int course_id);
 	int selectLikeCount(String title,int speaker_id,int course_id);
 	Video selectVideo(int id);
 

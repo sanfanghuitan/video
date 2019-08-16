@@ -47,8 +47,8 @@ public class VideoServiceImpl implements VideoService{
 		videoDao.deleteAllVideo(str);
 	}
 
-	public List<Video> selectLike(String title,int speaker_id,int course_id,int page,int pageSize) {
-		return videoDao.selectLike(title,speaker_id,course_id,page,pageSize);
+	public List<Video> selectLike(String title,int speaker_id,int course_id) {
+		return videoDao.selectLike(title,speaker_id,course_id);
 	}
 
 	public int selectLikeCount(String title,int speaker_id,int course_id) {

@@ -26,15 +26,12 @@ public class CourseController {
 	SubjectService subjectService;
 	
 	@RequestMapping("courseShow")
-	public String courseShow(@RequestParam(defaultValue="0")Integer pages,Model model){
-		PageHelper.startPage(pages,5);
+	public String courseShow(@RequestParam(value="pn",defaultValue="1")Integer pages,Model model){
 	
+		PageHelper.startPage(pages,5);
 		List<Course> courses = courseService.selectAll();
-		
-		PageInfo<Course> pageInfo = new PageInfo<Course>(courses);
-		model.addAttribute("count", pageInfo.getTotal());
-		model.addAttribute("course", pageInfo.getList());
-		model.addAttribute("page", pageInfo.getPageNum());
+		PageInfo<Course> pageInfo = new PageInfo<Course>(courses,5);
+		model.addAttribute("pageInfo", pageInfo);
 		return "courseManage";
 	}
 	
@@ -55,4 +52,41 @@ public class CourseController {
 		return "redirect:/courseShow";
 	}
 
+	
+	@RequestMapping("addCourse.do")
+	public String addCourse(Course course){
+	
+		courseService.add(course);
+		return "redirect:/courseShow";	
+	}
+	
+	@RequestMapping("updateCourse.do")
+	public String updateCourse(int id,Model model){
+	   System.out.println(courseService.selectOne(id));
+		List<Subject> subjects = subjectService.selectAll();
+		
+		model.addAttribute("subject",subjects);
+		model.addAttribute("course",courseService.selectOne(id));
+
+		return "redirect:/courseShow";	
+	}
+	
+	@RequestMapping("alterCourse.do")
+	public String alterCourse(Course course){
+		courseService.update(course);
+		return "redirect:/courseShow";
+	}
+	
+	@RequestMapping("deleteAll.do")
+	public String deleteAll(int[] str){
+       if(str.length!=0){
+    	   courseService.deleteAll(str);	
+       }		
+       return "redirect:/courseShow";
+	}
+
+	
+	
+	
+	
 }
