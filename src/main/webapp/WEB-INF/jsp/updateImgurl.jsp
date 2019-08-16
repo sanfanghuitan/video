@@ -41,10 +41,6 @@
 
 			<div id="user_bar">
 				<a> <img id="avatar" src="${user.imgurl}" alt="">
-
-
-
-
 				</a> <a href="userExit.do">退出</a>
 			</div>
 		</div>

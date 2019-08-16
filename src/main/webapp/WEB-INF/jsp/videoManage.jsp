@@ -268,7 +268,7 @@ th {
 		
 		
 		function courseShow(){
-			location.href="CourseShow.do";
+			location.href="courseShow";
 		}
 		function SpeakerShow(){
 			location.href="SpeakerShow.do";

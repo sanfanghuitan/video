@@ -41,8 +41,9 @@ th {
 			<ul class="nav navbar-nav">
 				<li><a href="VideoShow.do">视频管理</a></li>
 				<li><a href="SpeakerShow.do">主讲人管理</a></li>
+					<li class="active"><a>管理员管理</a></li>
 				<li href="courseShow.do"><a>课程管理</a></li>
-				<li class="active"><a>管理员管理</a></li>
+			
 			</ul>
 			<p class="navbar-text navbar-right">
 				<span>${admin.accounts}</span> <i class="glyphicon glyphicon-log-in"
@@ -81,8 +82,8 @@ th {
 					<tr class="active">
 						<th><input type="checkbox" id="all"></th>
 						<th>序号</th>
-						<th style="width: 16%">标题</th>
-						<th style="width: 60%">简介</th>
+						<th style="width: 16%">账号</th>
+						<th style="width: 60%">权限</th>
 						<th>编辑</th>
 						<th>删除</th>
 					</tr>
