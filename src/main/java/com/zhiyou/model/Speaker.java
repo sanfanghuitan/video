@@ -1,6 +1,8 @@
 package com.zhiyou.model;
 
-public class Speaker {
+import java.io.Serializable;
+
+public class Speaker implements Serializable {
 	private int id;
 	private String speaker_name;
 	private String speaker_desc;

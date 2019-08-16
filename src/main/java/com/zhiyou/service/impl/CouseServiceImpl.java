@@ -3,6 +3,7 @@ package com.zhiyou.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.zhiyou.dao.CourseDao;
@@ -59,6 +60,7 @@ public class CouseServiceImpl implements CourseService{
 	/**
 	 * 根据subjectId查询
 	 */
+	@Cacheable("select")
 	@Override
 	public VideoResult selectCourse(int subjectId) {
 		List<Course> list = courseDao.selectCourse(subjectId);
@@ -67,13 +69,14 @@ public class CouseServiceImpl implements CourseService{
 		} 
 		return VideoResult.success(list);
 	}
-
+	@Cacheable("select")
 	@Override
 	public VideoResult selectVideo(int videoId) {
 		List<Course> list = courseDao.selectVideo(videoId);
+		System.out.println("--------------");
 		return VideoResult.success(list);
 	}
-
+	@Cacheable("select")
 	@Override
 	public VideoResult selectSpeaker(int speakerId) {
 		List<Course> list = courseDao.selectSpeaker(speakerId);

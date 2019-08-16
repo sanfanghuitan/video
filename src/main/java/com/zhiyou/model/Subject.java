@@ -1,6 +1,8 @@
 package com.zhiyou.model;
 
-public class Subject {
+import java.io.Serializable;
+
+public class Subject implements Serializable {
 	private int subject_id;
 	private String subject_name;
 	public int getSubject_id() {
